@@ -1,13 +1,16 @@
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
  * @author Christopher Millar
  */
 public class GenerateKeys {
-    KeyRequirements keyRequirements = new KeyRequirements();
+    private KeyRequirements keyRequirements = new KeyRequirements();
     private BigInteger e, d, n;
     private BigInteger lambdaN = keyRequirements.getLambdaN();
+    private HashMap<String, BigInteger> privateKey = new HashMap();
+    private HashMap<String, BigInteger> publicKey = new HashMap();
 
     GenerateKeys(){
         setPublicExponent();
@@ -30,11 +33,15 @@ public class GenerateKeys {
         d = e.modInverse(lambdaN);
     }
 
-    public BigInteger getE() {
-        return e;
+    public HashMap<String, BigInteger> getPublicKey() {
+        publicKey.put("n", n);
+        publicKey.put("e", e);
+        return publicKey;
     }
 
-    public BigInteger getD() {
-        return d;
+    public HashMap<String, BigInteger> getPrivateKey() {
+        privateKey.put("n", n);
+        privateKey.put("d", d);
+        return privateKey;
     }
 }
