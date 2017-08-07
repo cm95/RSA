@@ -2,6 +2,7 @@ import java.math.BigInteger;
 import java.util.Random;
 
 /**
+ * The KeyRequirements class creates the components needed for RSA keys.
  * @author Christopher Millar
  */
 public class KeyRequirements {
@@ -12,6 +13,9 @@ public class KeyRequirements {
         setTotient();
     }
 
+    /**
+     * Creates prime numbers p, and q. Calculates n from p and q
+     */
     private void setPrimeNumbers() {
         Random rand = new Random();
         p = new BigInteger("0");
@@ -37,6 +41,9 @@ public class KeyRequirements {
         n = p.multiply(q);
     }
 
+    /**
+     * Computes the totient of the product as n = lcm(p-1,q-1)
+     */
     private void setTotient() {
         BigInteger p1 = p.subtract(BigInteger.ONE);
         BigInteger q1 = q.subtract(BigInteger.ONE);
@@ -59,6 +66,13 @@ public class KeyRequirements {
         return lambdaN;
     }
 
+
+    /**
+     * Calculates the greatest common divisor of two BigIntegers
+     * @param x the first BigInteger to be input
+     * @param y the second BigInteger to be input
+     * @return BigInteger gcd of the two inputs
+     */
     public BigInteger gcd(BigInteger x, BigInteger y) {
         if (y.equals(BigInteger.ZERO)) {
             return x;
@@ -67,6 +81,12 @@ public class KeyRequirements {
         }
     }
 
+    /**
+     * Calculates the least common multiple of two BigIntegers
+     * @param x the first BigInteger to be input
+     * @param y the second BigInteger to be input
+     * @return BigInteger lcm of the two inputs
+     */
     public BigInteger lcm(BigInteger x, BigInteger y) {
         return x.multiply(y).divide(gcd(x, y));
     }

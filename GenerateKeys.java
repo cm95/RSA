@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
+ * The GenerateKeys class uses the key components of the KeyRequirements class
+ * to calculate a private and public key.
  * @author Christopher Millar
  */
 public class GenerateKeys {
@@ -17,6 +19,9 @@ public class GenerateKeys {
         setPrivateExponent();
     }
 
+    /**
+     * Creates the public exponent of the public key (n,e)
+     */
     private void setPublicExponent() {
         Random rand = new Random();
 
@@ -28,6 +33,9 @@ public class GenerateKeys {
         }
     }
 
+    /**
+     * Creates the private exponent of the private key (n,d)
+     */
     private void setPrivateExponent(){
         d = new BigInteger("0");
         d = e.modInverse(lambdaN);
